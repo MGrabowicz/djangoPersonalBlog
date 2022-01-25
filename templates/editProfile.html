@@ -1,0 +1,33 @@
+<!-- templates/registration/login.html -->
+{% extends 'base.html' %}
+{% load static %}
+<!--{% block css %}<link rel="stylesheet" href="{% static 'login.css' %}?{% now "U" %}" type="text/css" />{% endblock %}-->
+{% block title %}Login{% endblock %}
+
+{% block mainContent %}
+<div class="mainContainer">
+    <div class="menusContainer">
+        <div class="signupContainer">
+            <h2>Edit profile:</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    {% for field in form %}
+                    <p>
+                        {{ field.label_tag }}
+                        <br>
+                        {{ field }}
+                    </p>
+                    {% endfor %}
+                    <p>
+                        {{ sform.profilePicture.label }}
+                        <br>
+                        {{ sform.profilePicture }}
+                    </p>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

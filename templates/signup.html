@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+<!--{% block css %}<link rel="stylesheet" href="{% static 'signup.css' %}?{% now "U" %}" type="text/css" />{% endblock %}-->
+{% block title %}Sign Up{% endblock %}
+
+{% block mainContent %}
+<div class="mainContainer">
+  <div class="signupContainer">
+    <h2>Sign up</h2>
+    <form method="post">
+      {% csrf_token %}
+      {% for field in signupForm %}
+        <p>
+        {{ field.label_tag }}
+        <br>
+        {{ field }}
+        </p>
+      {% endfor %}
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

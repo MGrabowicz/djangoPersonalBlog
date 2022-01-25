@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'createPost.css' %}?{% now "U" %}" type="text/css" />{% endblock %}
+{% block title %}Create new post{% endblock %}
+{% block mainContent %}
+{% if user.is_authenticated %}
+    <h1>Create new post:</h1>
+        <form method='POST' enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ postCreateForm.media }}
+            {{ postCreateForm.media }}
+            {% for field in postCreateForm %}
+                <div class="fieldDiv">
+                <p>
+                {{ field.label_tag }}
+                <br>
+                {{ field }}
+                </p>
+                </div>
+            {% endfor %}
+      <div class="saveButtonDiv"><input class="saveButton" type ='submit' value='Save' /></div>
+    </form>
+{% else %}
+    <h1>You shouldn't be there.</h1>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,77 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Mateusz Grabowicz personal blog{% endblock %}</title>
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'base.css' %}?{% now " U
+    " %}" type="text/css" />
+    {% block css %}{% endblock %}
+</head>
+<body>
+<div class="bannerBackground">
+    <div class="bannerContainer">
+        <span class="logo">Mateusz Grabowicz Blog</span>
+    </div>
+</div>
+<main class="mainContainer">
+    <div class="mainContent">
+        {% block mainContent %}
+        {% endblock %}
+    </div>
+    <div class="sideContent">
+        <div class="navigationContainer">
+            <div><a href="{% url 'home' %}" class="homeButton" id="navButton">Home</a></div>
+            <div><span class="divider">|</span></div>
+            <div><a href="{% url 'search' %}" class="contactButton" id="navButton">Search</a></div>
+            {% if request.user.is_staff %}
+            <div><span class="divider">|</span></div>
+            <div><a href="{% url 'createPost' %}" class="createButton" id="navButton">Create</a></div>
+            {% else %}
+            {% endif %}
+        </div>
+        <div class="userContainer">
+            {% if user.is_authenticated %}
+            <div class="userPhoto"><img class="profilePicture" src="{{ user.bloguser.profilePicture.url }}"></div>
+            <span class="welcomeSpan">Welcome <a href="{% url 'editProfile' %}" class="myProfileButton" id="navButton">{{ user.username }}</a>!</span>
+            <a href="{% url 'logout' %}" class="logoutButton" id="navButton">Log Out</a>
+            {% else %}
+            <span class="welcomeSpan">Welcome anonymous!</span>
+            <div>
+                <a onclick="showLoginForm()" class="loginButton" id="navButton">Log In</a>
+                <a href="{% url 'signup' %}" class="signupButton" id="navButton">Sign In</a>
+            </div>
+            <div class="formsContainer">
+                <form class="loginForm" method="POST" name="loginForm">
+                    {% csrf_token %}
+                    {% for field in loginForm %}
+                    <p>
+                        {{ field.label_tag }}
+                        <br>
+                        {{ field }}
+                    </p>
+                    {% endfor %}
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+        {% block sideContent %}
+        {% endblock %}
+    </div>
+</main>
+<div class="footer"><span>Copyright by Mateusz Grabowicz</span></div>
+</body>
+</html>
+<script type="text/javascript">
+        function showLoginForm() {
+            document.getElementsByClassName('loginForm')[0].style.display = 'block';
+        }
+        {% block jsContent %}
+        {% endblock %}
+</script>

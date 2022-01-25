@@ -1,0 +1,10 @@
+-searchbar by title, content or tag
+-ftp for images
+-unit tests
+-dockerizing
+
+
+
+
+
+-better tags system

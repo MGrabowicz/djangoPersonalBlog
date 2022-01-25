@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'home.css' %}?{% now "U" %}" type="text/css" />{% endblock %}
+{% block title %}Home{% endblock %}
+{% block mainContent %}
+{% comment %} {% if user.is_authenticated %}
+    <h1>Welcome {{ user.username }}.</h1>
+{% else %}
+    <h1>Welcome anonymous.</h1>
+{% endif %} {% endcomment %}
+<h1>Searching posts by tag '{{ tag.tagContent }}'</h1>
+{% for post in latestPosts %}
+<div class="postContainer">
+    <div class="photoContainer">
+        <img class="thumbnail" src="{{ post.postPicture.url }}">
+    </div>
+    <div class="textContainer">
+        <div class="postTitle">{{ post.title }}</div>
+        <div class="postDate">{{ post.addedAt }}</div>
+        <div class="postContent">{{ post.content| safe | striptags  | truncatechars:380 }}</div>
+        <a class="readMoreButton" href="{% url 'postDetail' post.pk%}">Read more</a>
+    </div>
+</div>
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if latestPosts.has_previous %}
+            <a class="paginationLink" href="?page=1">&laquo; first</a>
+            <a class="paginationLink" href="?page={{ latestPosts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ latestPosts.number }} of {{ latestPosts.paginator.num_pages }}.
+        </span>
+
+        {% if latestPosts.has_next %}
+            <a class="paginationLink" href="?page={{ latestPosts.next_page_number }}">next</a>
+            <a class="paginationLink" href="?page={{ latestPosts.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}
+{% block sideContent %}
+{% endblock %}

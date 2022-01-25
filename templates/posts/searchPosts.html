@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'searchPosts.css' %}?{% now " U" %}" type="text/css" />{% endblock %}
+{% block title %}Search posts{% endblock %}
+{% block mainContent %}
+
+<h1>Search posts</h1>
+<div class="searchBarContainer">
+    <form action="{% url 'search' %}" method="get">
+      <input name="searchBar" type="text" placeholder="Search...">
+      <input type="submit" placeholder="Search">
+    </form>
+</div>
+{% for post in searchResult %}
+    <div class="postContainer">
+        <div class="photoContainer">
+            <img class="thumbnail" src="{{ post.postPicture.url }}">
+        </div>
+        <div class="textContainer">
+            <div class="postTitle">{{ post.title }}</div>
+            <div class="postDate">{{ post.addedAt }}</div>
+            <div class="postContent">{{ post.content| safe | striptags  |truncatechars:380 }}</div>
+            <a class="readMoreButton" href="{% url 'postDetail' post.pk%}" id="navButton">Read more</a>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
+{% block sideContent %}
+{% endblock %}

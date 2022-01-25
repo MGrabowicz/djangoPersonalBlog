@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'detailPost.css' %}?{% now " U" %}" type="text/css" />
+    <script type="text/javascript" src="{% static 'detailPost.js' %}?{% now " U" %}"></script>{% endblock %}
+{% block title %}Home{% endblock %}
+{% block mainContent %}
+<h1>{{ post.title }}</h1>
+<div class="postDate">
+    Tags:
+    {% for tag in tags %}
+    <a class="tagButton" href="{% url 'byTag' tag.tagID.pk %}">{{ tag.tagID.tagContent }}</a>,
+    {% endfor %}
+</div>
+<div class="photoContainer"><img class="thumbnail" src="{{ post.postPicture.url }}"></div>
+<div class="postDate">{{ post.addedAt }}</div>
+<div class="postContent">{{ post.content| safe | linebreaks   }}</div>
+<div class="commentsContainer">
+    {% for comment in comments %}
+        <div class="commentContainer">
+            <div class="commentProfilePictureContainer"><img class="commentProfilePicture" src="{{ comment.authorID.bloguser.profilePicture.url }}"></div>
+            <div class="commentText">
+                <span class="commentDate">
+                    {{ comment.addedAt }}
+                    <span id="likeCount{{comment.pk}}">{{ comment.likeCount }}</span> likes
+                    {% if user.is_authenticated %}
+                    <button class="likeButton" id="likeCount{{comment.pk}}" value="{{ comment.pk }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="0.8vw" height="0.8vw" viewBox="0 0 24 24"><path d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>
+                    </button>
+                    {% endif %}
+                </span>
+                <span class="commentAuthor">{{ comment.authorID.get_full_name|default:comment.authorID.username }}</span>
+                <span class="commentContent">{{ comment.comment }}</span>
+            </div>
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+{% if user.is_authenticated %}
+<form method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="fieldDiv">
+        <p>
+            {{ commentForm.comment.label_tag }}
+            <br>
+            {{ commentForm.comment }}
+        </p>
+    </div>
+    <div class="saveButtonDiv"><input class="saveButton" type='submit' value='Save'/></div>
+</form>
+{% endif %}
+{{ post.pk|json_script:"pk" }}
+{% endblock %}
+{% block sideContent %}
+{% endblock %}
+{% block jsContent %}
+var csrftoken = '{{ csrf_token }}';
+{% endblock %}

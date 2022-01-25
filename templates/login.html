@@ -1,0 +1,24 @@
+<!-- templates/registration/login.html -->
+{% extends 'base.html' %}
+{% load static %}
+<!--{% block css %}<link rel="stylesheet" href="{% static 'login.css' %}?{% now "U" %}" type="text/css" />{% endblock %}-->
+{% block title %}Login{% endblock %}
+
+{% block mainContent %}
+<div class="mainContainer">
+    <div class="loginContainer">
+        <h2>Log In</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in loginForm %}
+                <p>
+                {{ field.label_tag }}
+                <br>
+                {{ field }}
+                </p>
+            {% endfor %}
+        <button type="submit">Sign In</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

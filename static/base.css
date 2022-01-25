@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=The+Nautigal&display=swap');
+html,
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer {
+    background: rgb(35, 37, 38);
+    background: linear-gradient(326deg, #5C258D 0%, #4389A2 100%);
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 2vh;
+    box-shadow: 0px -2px 3px #888888;
+}
+
+.welcomeSpan {
+    font-size: 1vw;
+}
+
+.userProfile {
+    min-width: 60%;
+    min-height: 100%;
+    padding-left: 2.5px;
+}
+
+.userContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 10%;
+    min-width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.logoutButton,
+.loginButton,
+.signupButton {
+    font-size: 0.8vw;
+}
+
+.signupForm,
+.loginForm {
+    display: none;
+}
+
+.profilePicture {
+    margin-top: 15px;
+    width: min(10vw, 200px);
+    height: min(10vw, 200px);
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px #000000;
+}
+
+.bannerBackground {
+    background: rgb(35, 37, 38);
+    background: linear-gradient(326deg, #5C258D 0%, #4389A2 100%);
+    height: min(12vh, 100px);
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0px 2px 3px #888888;
+    margin-bottom: 2vh;
+}
+
+.bannerContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 25vw;
+    min-width: 38.5vw;
+    color: white;
+}
+
+.navigationContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1vw;
+    min-width: 25%;
+    min-height: 8%;
+    background: linear-gradient(326deg, #5C258D 0%, #4389A2 100%);
+    box-shadow: 0px 2px 3px #888888;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#navButton:link,
+#navButton:visited,
+.divider,
+.loginButton,
+.signupButton {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    text-shadow: 1px 1px 4px #000000;
+}
+
+#navButton:hover,
+#navButton:active {
+    color: #a5a5a5;
+    text-decoration: none;
+    text-shadow: 1px 1px 4px #000000;
+}
+
+.mainContainer {
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5vh;
+}
+
+.sideContent {
+    height: 100vh;
+    min-width: 25%;
+    background-color: rgb(236, 236, 236);
+}
+
+.mainContent {
+    padding-right: 1vw;
+    min-width: 75%;
+}
+
+.homeButton,
+.divider,
+.contactButton,
+.createButton {
+    align-self: flex-end;
+    padding-bottom: 0.5vh;
+}
+
+.loginButton,
+.contactButton,
+.homeButton,
+.createButton,
+.divider {
+    padding-right: 0.3vw;
+}
+
+.logo {
+    font-family: 'The Nautigal', cursive;
+    font-size: 3vw;
+    white-space: nowrap;
+    text-shadow: 1px 1px 4px #000000;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+}

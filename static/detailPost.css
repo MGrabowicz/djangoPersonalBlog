@@ -1,0 +1,91 @@
+.commentProfilePicture {
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.photoContainer {
+    height: 50vh;
+}
+
+.postDate {
+    font-size: 0.9vw;
+    color: rgb(87, 87, 87);
+}
+
+.postContent {
+    font-size: 1vw;
+}
+
+a:link.tagButton,
+a:visited.tagButton {
+    color: rgb(87, 87, 87);
+    text-decoration: none;
+    text-shadow: none;
+}
+
+a:hover.tagButton,
+a:active.tagButton {
+    color: #a5a5a5;
+    text-decoration: none;
+}
+
+.commentContainer {
+    display: flex;
+    flex-direction: row;
+    min-width: 100%;
+}
+
+.commentProfilePictureContainer {
+    width: 30px;
+    height: 30px;
+    align-self: flex-end;
+}
+
+.commentText {
+    /* min-width: 100%; */
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.commentDate {
+    font-size: 0.8vw;
+    color: #a5a5a5
+}
+
+.commentAuthor {
+    font-size: 1vw;
+    font-weight: bold;
+}
+
+.commentContent {
+    font-size: 1vw;
+}
+
+.likeButton {
+    border: none;
+    background-color: white;
+}
+
+#id_comment {
+    width: 90%;
+    height: 10vh;
+    resize: none;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
