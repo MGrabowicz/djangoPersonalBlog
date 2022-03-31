@@ -3,7 +3,6 @@ from django.conf import settings
 from django.db import models
 
 
-# Create your models here.
 class Posts(models.Model):
     title = models.CharField(max_length=120, blank=False, null=False)
     content = RichTextField(blank=False, null=False)
@@ -23,12 +22,14 @@ class Tags(models.Model):
     def __str__(self):
         return self.tagContent
 
+
 class PostsAndTags(models.Model):
-    postID = models.ForeignKey(Posts, on_delete=models.CASCADE,blank=True, null=True)
-    tagID = models.ForeignKey(Tags, on_delete=models.CASCADE,blank=True, null=True)
+    postID = models.ForeignKey(Posts, on_delete=models.CASCADE, blank=True, null=True)
+    tagID = models.ForeignKey(Tags, on_delete=models.CASCADE, blank=True, null=True)
+
 
 class Comments(models.Model):
-    postID = models.ForeignKey(Posts, on_delete=models.CASCADE,blank=True, null=True)
+    postID = models.ForeignKey(Posts, on_delete=models.CASCADE, blank=True, null=True)
     authorID = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     comment = models.TextField(blank=False, null=False)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like', default=None, blank=True)
